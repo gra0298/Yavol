@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">   
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>vane</title>
+    
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        body {
+            font-family: 'Oxygen', sans-serif;
+            display: flex;
+            background: rgba(198, 232, 243, 0.788);
+            justify-content: center;/* me centra la caja*/
+            align-items: center;
+            padding: 100px 0;
+            background: radial-gradient(circle, #D0F9F3, #99d3ee 250px);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+
+    
+    <!-- Content -->
+<body class="content " >
+    <div >
+        <article class="container px-5 py-24 mx-auto">
+        
+            <div class="flex flex-col justify-center items-center">
+                <h1 class="text-4xl md:text-6xl text-white-700 font-semibold">Buscar Usuarios de Facebook</h1>
+                
+                <div id="facebookk"  >
+                    <TransitionGroup name="list">
+                        <!-- Favorites -->
+                        <div class="favorites  " >
+                            <!--favoritos de abajo es Favoritos Map-->
+                            <div class="favorite m-4 absolute left-0" v-for="alias in  TodosFavoritos" :key="alias.id">
+                                <a href="" >
+                                    <div class="border-4 border-indigo-500/50 border-x-indigo-500 border-y-indigo-500">
+                                        <img :src="resultado.picture.data.url " :alt="alias.login" class="favorite__avatar  "  height="150" width="150">
+                                    </div>
+                                    
+                                    
+                                </a>
+                            </div>
+                    <TransitionGroup >
+            
+                </div>
+                    <!-- Search -->
+                    <form class="search" v-on:submit.prevent="Buscar">
+                        <br>
+                        <input type="number" v-model="busqueda" class="search__input" required placeholder="ID de user, example 740942583993914" style="margin-bottom: 16px; border: 2px solid rgb(28, 26, 27);">
+                        <input type="submit" class="search__submit" value="Buscar" style="margin-bottom: 33px; border: 2px solid rgb(235, 38, 159);">
+
+                    </form>
+                    <section class="md:h-full flex items-center text-gray-600">
+                        <div class="container px-5 py-24 mx-auto">
+
+                <!-- Resultado  aqui va lo del video-->
+                <div>
+                    <div>
+                        <div class="result " v-if="resultado" >
+                            <div class="h-full border-5 border-blue-300 border-opacity-60 rounded-lg overflow-hidden">
+                                <div class="p-9 hover:bg-pink-700 hover:text-black transition duration-300 ease-in">
+                                
+                                    <a v-if="favoritos.has(resultado.id)" href="" class="result__toggle-favorite" @click.prevent="removerfavorito">Eliminar favoritos <img src="img/eliminar.png" width="30" height="30" alt=""></a>
+                                    <a v-else href="" class="result__toggle-favorite" @click.prevent="addFavorito">Añadir a favoritos <img src="img/estrella.png" width="30" height="30" alt=""></a>
+                                    <h2 class="result__name">{{resultado.name}}</h2>
+                                    <center><img :src="resultado.picture.data.url" alt="" width="100" class="result__avatar class="lg:h-72 md:h-48 w-full object-cover object-center=""></center>
+                                
+                                
+                                
+                                    
+                                        <br>
+                                        <a :href="resultado.html_url" target="blank" class="result__blog">Perfil del usuario</a>
+                                        <br>
+                                        <span
+                                        class="text-black-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-black-200">
+                                            <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>favoritos
+                                        </span>
+                                    </div>
+                                   
+                                </div>
+                                
+                                
+                            </div>
+                        </div> 
+                        
+                        <div v-if=" " v-show="fail" class="result__error" ><h2>error</h2></div>
+                    </div>
+                </div>
+                
+                    
+            <div>         
+        </article>
+    </div>
+</body>
+    <script src="js/main.js"></script>
+    <script>
+        const facebookMontado = facebook.mount('#facebookk')
+    </script>
+</body>
+
+
+</html>

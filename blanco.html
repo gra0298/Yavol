@@ -55,7 +55,10 @@
             
                 </div>
                     <!-- Search -->
-                    <form class="search" v-on:submit.prevent="Buscar">
+                    <!-- cuando se activa el submit se activa el buscar
+                    v-on:eventos como un click,un submit-->
+                    <form class="search" v-on:submit.prevent="Buscar"><!--v-on es una directiva de vue-->
+                        <!-- prevent previene que ocurra un recargue de la página-->
                         <br>
                         <input type="number" v-model="busqueda" class="search__input" required placeholder="ID de user, example 740942583993914" style="margin-bottom: 16px; border: 2px solid rgb(28, 26, 27);">
                         <input type="submit" class="search__submit" value="Buscar" style="margin-bottom: 33px; border: 2px solid rgb(235, 38, 159);">
@@ -99,6 +102,7 @@
                         </div> 
                         
                         <div v-if=" " v-show="fail" class="result__error" ><h2>error</h2></div>
+                        <!-- mostrar y ocultar elementos en nuestra página de forma similar a v-if y v-else-->
                     </div>
                 </div>
                 
@@ -110,8 +114,16 @@
     <script src="js/main.js"></script>
     <script>
         const facebookMontado = facebook.mount('#facebookk')
+        
     </script>
+        
 </body>
+<!--
+        Mount es un método de vue.
+        Para usarlo se crea una instancia y llamarla,la instancia es Facebook
+        En Facebook.mount se realiza la instancia.
+
+        -->
 
 
 </html>

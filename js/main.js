@@ -3,9 +3,11 @@
 //const API = "https://graph.facebook.com/v14.0/?access_token=EAAIHQhIvwlkBADVyaZAwFAzngLn20ZBE3ufb5pPAKvuVN5qAdFV8iIq7JkP09wQGr8IqFnngpJxydpKITFtBeF1L9U9SN8O2tU3DAuquRQsg7bZBTs0SUkFzyCf6DrKxhk1HQAWVBZCuzaYF8a7ZBahioEQaOpwrQTvZCB7frQ6jDXgkVKB6ip";
 const API = "https://graph.facebook.com/v14.0/";
 //const ID = "740942583993914"
-const TOKEN = "?fields=id,name,picture&access_token=EAAIHQhIvwlkBAD6txNPHE30buWU95eKkhUYnd4ZBMXLZCAfAA793sCSHcJsif3P186QBKwe2Ivs189wUAhkH6ju3QR3WsTxCZBCUrbvTFyzhQ7suaYR85tWCSKn2TZCBhMzFmIbGTApzpaPFBjCafWKoH0W2tDyesIws0kekEpZBaZAU4ZCGZC9wMVRCWJEbprY2g00F03jLrSL05jPdMUlDVQy2UUn8rMCdTjFaKNkMXoG79ZAYSnZAhc"
+const TOKEN = "?fields=id,name,picture&access_token=EAAIHQhIvwlkBAI1sk6hcVT91A2rtGfRNX5lsHPnBnonIsZAPFsmmsaqmPe3DeRAOcjiQ1gb7Vpc2i8BSkRN3sdqsMaMUIqzS0xO6bYOQ5GY6q6vV5YqbLCiiLs13SV4StomcL7TW7D9wOqjvHmkWlucQW68D4rxQpRt7eknjmdGRuKZCES62RsYk9nXFPxnBA1ZC7pIS3GSV7c43BWzYe8jmZBhHhBa09INTAZBsfxRb4i6J7IBB1"
 //615022695
 
+
+//create app método de la clase vue e inicializa el proyecto
 const facebook = Vue.createApp({
     data() { //atributos: nombre apellido,mensaje, resultado.. data es una palabra reservada de vue
       return {
@@ -15,6 +17,7 @@ const facebook = Vue.createApp({
         busqueda : null,
         resultado : null, //vacío
         fail: null,
+        //Se guardan los favoritos en arry de tipo map
         favoritos: new Map()// aqui se define nuevo atributo Y SE GUARDAN LOS FAVORITOS
       }
     /*},created(){
@@ -47,6 +50,7 @@ const facebook = Vue.createApp({
       
         async Buscar(){
           try {
+            //Constante response que devuelve una búsqueda
             const response = await fetch(API + this.busqueda + TOKEN)//aquí se realiza la busqueda
             console.log(response)
             //si ok es false,lanzar un nuevo error
@@ -57,7 +61,10 @@ const facebook = Vue.createApp({
             console.log(data)
             
             
-            
+            /*
+            Trycatch: Un bloque catch contiene sentencias que especifican que hacer si una excepción es lanzada
+             en el bloque try . Si cualquier sentencia dentro del bloque try (o en una funcion llamada desde
+             dentro del bloque try ) lanza una excepción, el control cambia inmediatamente al bloque catch */
             
           } catch (error) {
             this.fail = error   
@@ -66,13 +73,17 @@ const facebook = Vue.createApp({
            //finalmente se recomienda limpiar caché
           } finally {
             this.busqueda = null
+            //En búsqueda de vue si no se colocaba el finally aparecia 
+            //lo que se había buscado independientemente si estaba bien o mal
             
           }         
-            
+           //Se crea nueva función
         },addFavorito(){
+          //Esta función se encargará de agregar el perfil de una persona a favoritos.
           //la clave de este map será el Id y la clave será el resultado
-
+          //Se pide que se traiga la clave que es el id
           this.favoritos.set(this.resultado.id,this.resultado)
+          
           this.UpdateStorage()//se carga el updateStorage porque se está llamando al método
 
 
@@ -92,3 +103,6 @@ const facebook = Vue.createApp({
   })//.mount('#app')
 
   //createApp me crea el objet>
+
+  //Storage (API de almacenamiento web) nos permite almacenar datos de manera local en el navegador y sin necesidad de realizar alguna conexión a una base de datos. En este artículo
+  //te mostraré cómo utilizarlo mediante JavaScript.

@@ -3,7 +3,7 @@
 //const API = "https://graph.facebook.com/v14.0/?access_token=EAAIHQhIvwlkBADVyaZAwFAzngLn20ZBE3ufb5pPAKvuVN5qAdFV8iIq7JkP09wQGr8IqFnngpJxydpKITFtBeF1L9U9SN8O2tU3DAuquRQsg7bZBTs0SUkFzyCf6DrKxhk1HQAWVBZCuzaYF8a7ZBahioEQaOpwrQTvZCB7frQ6jDXgkVKB6ip";
 const API = "https://graph.facebook.com/v14.0/";
 //const ID = "740942583993914"
-const TOKEN = "?fields=id,name,picture&access_token=EAAIHQhIvwlkBAI1sk6hcVT91A2rtGfRNX5lsHPnBnonIsZAPFsmmsaqmPe3DeRAOcjiQ1gb7Vpc2i8BSkRN3sdqsMaMUIqzS0xO6bYOQ5GY6q6vV5YqbLCiiLs13SV4StomcL7TW7D9wOqjvHmkWlucQW68D4rxQpRt7eknjmdGRuKZCES62RsYk9nXFPxnBA1ZC7pIS3GSV7c43BWzYe8jmZBhHhBa09INTAZBsfxRb4i6J7IBB1"
+const TOKEN = "?fields=id,name,picture&access_token=EAAIHQhIvwlkBAJFt3tYPEYvy3lFeHX9BHmga9qfFsweM0cwbIZBiTNv4lDlwrj3rCaYeDJmNkDZAd2lZCrC2aYXXyeREHoFP4GFqscoWxSugSyZAJw8ftkkaxSx6MPKKTDflMsMsMiUpDtmQZAl5h4r3dTZBBQvaPD4mMdDhJYR25pl7f4s2vY2TwKH4v34TuvA2iFRAe0gy0CtaJvtyRzauWL1NPFT6fZBaKeYmikHWzvWKvGsbsUu"
 //615022695
 
 
@@ -20,7 +20,7 @@ const facebook = Vue.createApp({
         //Se guardan los favoritos en arry de tipo map
         favoritos: new Map()// aqui se define nuevo atributo Y SE GUARDAN LOS FAVORITOS
       }
-    /*},created(){
+    },created(){
       const FavoritosGuardados = JSON.parse(window.localStorage.getItem("favoritos"))
       //primero evalua si existe
       if(FavoritosGuardados?.length){
@@ -31,7 +31,7 @@ const facebook = Vue.createApp({
           this.favoritos = favoritosRebuild
           console.log(this.favoritos)
         
-      }*/
+      }
     },
     computed: {
       //es favorito?
@@ -42,7 +42,8 @@ const facebook = Vue.createApp({
       //con esta propiedad computada se retornantodos los favoritos 
       //pero únicamente los valores,no las keys para eso se usa values()
       TodosFavoritos(){
-        return Array.from(this.favoritos.values())
+        return Array.from(this.favoritos.values());
+        console.log(this.favoritos);
       }
 
     },
@@ -93,6 +94,9 @@ const facebook = Vue.createApp({
           this.UpdateStorage()
 
         },
+        MostrarFavorito(item){
+          this.resultado = item
+        },
         //se pretende guardar en cache informacion de favoritos de manera persistente
         UpdateStorage(){
           //convertimos el map en una cadena de texto Json
@@ -104,5 +108,5 @@ const facebook = Vue.createApp({
 
   //createApp me crea el objet>
 
-  //Storage (API de almacenamiento web) nos permite almacenar datos de manera local en el navegador y sin necesidad de realizar alguna conexión a una base de datos. En este artículo
+  //Storage  permite almacenar datos de manera local en el navegador y sin necesidad de realizar alguna conexión a una base de datos. En este artículo
   //te mostraré cómo utilizarlo mediante JavaScript.
